@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     },
     profileImage: {
         type: String,
-        required: true
+       // required: true
     },
     address: {
         shipping: {
@@ -39,15 +39,17 @@ const userSchema = new mongoose.Schema({
             city: { type: String },
             pincode: { type: String }
         }
-    ,
-    billing: {
+      ,
+          billing: {
         street: { type: String },
         city: { type: String },
         pincode: { type: String }
     }
 }
 
-}, { timestamps: true });
+}, { timestamps: true })
+
+
 
 
 module.exports = mongoose.model('users', userSchema)

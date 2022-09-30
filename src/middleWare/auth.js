@@ -15,13 +15,13 @@ const validateToken = async function (req, res, next) {
 
         console.log(splitToken)
         // we save this token with variable because decoded userId in then Token
-        let decodedToken = jwt.decode(splitToken[1],"project-5-group-11")
+        let decodedToken = jwt.decode(splitToken[1],"Zorior")
         if (!decodedToken) {
             return res.status(401).send({ status: false, msg: "inavlid token" })
         }
        // console.log(decodedToken)
 
-        let tokenValidate = jwt.verify(splitToken[1], "project-5-group-11")
+        let tokenValidate = jwt.verify(splitToken[1], "Zorior")
 
         if(!tokenValidate)   return res.status(400).send({ status: false, msg: "Invalied Authentication" })
         // we create the  userId with the help of decodedToken and set in request userId

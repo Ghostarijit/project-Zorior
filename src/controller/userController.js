@@ -51,7 +51,7 @@ const createuser = async (req, res) => {
         let { phone, fname, lname, profileImage, email, password, address } = data
 
 
-        if (!data||Object.keys(data).length === 0) return res.status(400).send({ status: false, msg: "plz enter some data" })
+      //  if (!data||Object.keys(data).length === 0) return res.status(400).send({ status: false, msg: "plz enter some data" })
 
        
         // fname validation
@@ -59,7 +59,7 @@ const createuser = async (req, res) => {
         if (!fname || fname === undefined) return res.status(400).send({ status: false, msg: "first name must be present" });
         if (typeof fname !== "string" || fname.trim().length === 0) return res.status(400).send({ status: false, msg: "fname should be string" });
 
-        let nname = /^[a-zA-Z ]{2,30}$/.test(fname.trim())
+        let nname = /^[a-zA-Z]{2,30}$/.test(fname.trim())
         if (!nname) return res.status(400).send({ status: false, msg: "enter valid  fname" })
 
         data.fname = data.fname.trim()
@@ -102,7 +102,7 @@ const createuser = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
 
         data.password = await bcrypt.hash(data.password,salt)
-        // Phone va
+        // Phone validation
         if (typeof phone !== "string") {
             return res.status(400).send({ status: false, msg: " phone number is mandatory and should be in string datatype" });
         }
@@ -179,8 +179,5 @@ const createuser = async (req, res) => {
         res.status(500).send({ status: "error", msg: err.message })
     }
 }
-
-
-
 
 module.exports.createuser = createuser
